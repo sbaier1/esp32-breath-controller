@@ -1,8 +1,22 @@
 #include <Arduino.h>
 
-void setup() {
+void setup()
+{
   Serial.begin(115200);
-  analogReadResolution(ADC_BITS, ADC_MAX_VALUE);
+  // monitor wait
+  delay(5000);
+  analogSetAttenuation(ADC_11db);
 }
 
-void loop() {}
+void loop()
+{
+  Serial.println("Reading value");
+  // Read ADC value from GPIO2
+  int adcValue = analogRead(2);
+
+  // Print the detected value
+  Serial.println(adcValue);
+
+  // Delay 100ms between readings
+  delay(100);
+}
